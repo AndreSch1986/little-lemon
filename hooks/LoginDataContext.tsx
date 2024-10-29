@@ -6,8 +6,8 @@ import {string} from "prop-types";
 type UserInfo = {
     email: string;
     firstName: string;
-    lastName:"",
-    phoneNumber:"",
+    lastName:string,
+    phoneNumber:string,
     imgUri:string,
     orderStatus:boolean,
     passwordChange:boolean,
@@ -58,12 +58,17 @@ const LoginDataProvider: React.FC<{ children: React.ReactNode }> = ({children}) 
             if (data) {
                 setUserInfo(JSON.parse(data));
             }
+            console.log("getting data");
+            console.log(data);
             setLoginDatasetLoading(false);
         }
         getData();
     }, []);
 
     const setUserInfoHandler = (data: UserInfo) => {
+        console.log("setting user info");
+        console.log(data);
+
         setUserInfo((prevState)=>{
             return {
                 ...prevState,
