@@ -1,18 +1,17 @@
-import {FC, useContext, useEffect} from "react";
+import {FC, useContext, useEffect, useState} from "react";
 import {View, StyleSheet, Text, SafeAreaView, ScrollView, Image, TouchableOpacity} from "react-native";
 import {LoginDataContext, LoginDataContextType} from "@/hooks/LoginDataContext";
 import {useRouter} from "expo-router";
 import {useMenuData} from "@/hooks/useMenuData";
+import Search from "@/components/Search";
 
 
 const HomeScreen: FC = () => {
     const {userInfo} = useContext(LoginDataContext) as LoginDataContextType;
-    const {menuData, loading, loadData} = useMenuData();
+    const {menuData, setSearchText, setCategorys} = useMenuData();
     const router = useRouter();
 
-    useEffect(() => {
 
-    }, []);
 
     return (
         <SafeAreaView style={{flex: 1, marginBottom: 30}}>
@@ -33,6 +32,7 @@ const HomeScreen: FC = () => {
                         }
                     </TouchableOpacity>
                 </View>
+                <Search setSearchText={setSearchText}/>
             </ScrollView>
         </SafeAreaView>
     )

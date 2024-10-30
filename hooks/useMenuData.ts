@@ -3,7 +3,8 @@ import {insertMenuData, fetchMenuData, initDatabase, getItemsByNameAndCategories
 
 interface MenuData {
     menuData: MenuItem[];
-    loadData: (name: string, categorys: string[]) => void;
+    setSearchText: (text: string) => void;
+    setCategorys: (categorys: string[]) => void;
 }
 
 export function useMenuData(): MenuData {
@@ -52,10 +53,13 @@ export function useMenuData(): MenuData {
     }, []);
 
 
-    const loadData = useCallback(async (name: string, categorys: string[]) => {
-        setSearchName(name);
+    const setSearchText = useCallback((text: string) => {
+        setSearchName(text);
+    }, []);
+
+    const setCategorys = useCallback((categorys: string[]) => {
         setSearchCategorys(categorys);
     }, []);
 
-    return {menuData, loadData};
+    return {menuData, setSearchText, setCategorys};
 }
