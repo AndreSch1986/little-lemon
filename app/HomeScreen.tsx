@@ -5,6 +5,7 @@ import {useRouter} from "expo-router";
 import {useMenuData} from "@/hooks/useMenuData";
 import Search from "@/components/Search";
 import Categorys from "@/components/Categorys";
+import MenuItemComponent from "@/components/MenuItemComponent";
 
 
 const HomeScreen: FC = () => {
@@ -35,6 +36,14 @@ const HomeScreen: FC = () => {
                 </View>
                 <Search setSearchText={setSearchText}/>
                 <Categorys categorys={categorys} setCategorys={setCategorys}/>
+                {menuData.map((item, index) => {
+                    return (
+                        <MenuItemComponent
+                            key={index}
+                            item={item}
+                        />
+                    )
+                })}
             </ScrollView>
         </SafeAreaView>
     )

@@ -7,7 +7,7 @@ type MenuItemProps = {
     item: MenuItem;
 }
 
-const MenuItem: FC<MenuItemProps> = ({item}) => {
+const MenuItemComponent: FC<MenuItemProps> = ({item}) => {
     return (
         <View style={styles.container}>
             <View style={styles.textContainer}>
@@ -35,12 +35,14 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: 'flex-start',
         width: "100%",
+        gap:20
     },
     textContainer: {
         display: "flex",
         flexDirection: "column",
         justifyContent: 'flex-start',
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
+        width: "60%",
     },
     imageStyle: {
         width: 100,
@@ -56,4 +58,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default MenuItem;
+export default MenuItemComponent;
