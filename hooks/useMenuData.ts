@@ -2,6 +2,7 @@ import {useCallback, useEffect, useState} from "react";
 import {insertMenuData, fetchMenuData, initDatabase, getItemsByNameAndCategories, MenuItem} from "@/scripts/database"
 
 interface MenuData {
+    categorys: string[];
     menuData: MenuItem[];
     setSearchText: (text: string) => void;
     setCategorys: (categorys: string[]) => void;
@@ -9,6 +10,7 @@ interface MenuData {
 
 export function useMenuData(): MenuData {
     const [menuData, setMenuData] = useState<MenuItem[]>([]);
+    const [menuCategories, setMenuCategories] = useState<string[]>([]);
     const [searchName, setSearchName] = useState<string>("");
     const [searchCategorys, setSearchCategorys] = useState<string[]>([]);
     const [dbInitDone, setDbInitDOne] = useState<boolean>(false);
@@ -44,6 +46,14 @@ export function useMenuData(): MenuData {
                         setMenuData(items);
                     }
                 }
+                //Set Categoryslist
+                let catList = items.reduce((acc: string[], item) => {
+                    if (item.category && !acc.includes(item.category)) {
+                        acc.push(item.category);
+                    }
+                    return acc;
+                },[]);
+                setMenuCategories(catList);
                 setDbInitDOne(true);
             } catch (err) {
                 console.log(err);
@@ -61,5 +71,5 @@ export function useMenuData(): MenuData {
         setSearchCategorys(categorys);
     }, []);
 
-    return {menuData, setSearchText, setCategorys};
+    return {menuData, setSearchText, setCategorys, categorys: menuCategories};
 }

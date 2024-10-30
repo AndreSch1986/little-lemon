@@ -4,11 +4,12 @@ import {LoginDataContext, LoginDataContextType} from "@/hooks/LoginDataContext";
 import {useRouter} from "expo-router";
 import {useMenuData} from "@/hooks/useMenuData";
 import Search from "@/components/Search";
+import Categorys from "@/components/Categorys";
 
 
 const HomeScreen: FC = () => {
     const {userInfo} = useContext(LoginDataContext) as LoginDataContextType;
-    const {menuData, setSearchText, setCategorys} = useMenuData();
+    const {menuData, setSearchText, setCategorys, categorys} = useMenuData();
     const router = useRouter();
 
 
@@ -33,6 +34,7 @@ const HomeScreen: FC = () => {
                     </TouchableOpacity>
                 </View>
                 <Search setSearchText={setSearchText}/>
+                <Categorys categorys={categorys} setCategorys={setCategorys}/>
             </ScrollView>
         </SafeAreaView>
     )
