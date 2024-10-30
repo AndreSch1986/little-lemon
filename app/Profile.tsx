@@ -3,9 +3,11 @@ import {SafeAreaView, Text, StyleSheet, View, ScrollView, Image, TouchableOpacit
 import {LoginDataContext, LoginDataContextType} from "@/hooks/LoginDataContext";
 import Checkbox from 'expo-checkbox';
 import * as ImagePicker from 'expo-image-picker';
+import {useRouter} from "expo-router";
 
 
 const Profile: FC = () => {
+    const router = useRouter();
     const {userInfo, setUserInfo} = useContext(LoginDataContext) as LoginDataContextType;
     const [firstName, setFirstName] = useState<string>(userInfo.firstName);
     const [lastName, setLastName] = useState<string>(userInfo.lastName);
@@ -29,11 +31,14 @@ const Profile: FC = () => {
             passwordChange: false,
             specialOffers: true,
             newsletters: true,
+            onBoardingDone: false,
+            profileOk: false,
         })
     }, []);
 
     const saveChanges = useCallback(() => {
         setUserInfo({
+            ...userInfo,
             email,
             firstName,
             lastName,
@@ -43,7 +48,9 @@ const Profile: FC = () => {
             passwordChange,
             specialOffers,
             newsletters,
+            profileOk:true
         })
+        router.replace("/HomeScreen");
     }, [email, firstName, lastName, phoneNumber, imgUri, orderStatus, passwordChange, specialOffers, newsletters]);
 
 

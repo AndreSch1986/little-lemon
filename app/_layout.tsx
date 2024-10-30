@@ -34,6 +34,7 @@ export default function RootLayout() {
           <Stack.Screen name="Profile"/>
           <Stack.Screen name="OnBoarding"/>
           <Stack.Screen name="index"/>
+          <Stack.Screen name="HomeScreen"/>
         </Stack>
       </LoginDataProvider>
     </ThemeProvider>

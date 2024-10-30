@@ -59,6 +59,8 @@ const OnBoarding: FC = () => {
                         passwordChange:false,
                         specialOffers:true,
                         newsletters:true,
+                        onBoardingDone:true,
+                        profileOk:false,
                     });
                     setModalVisible(false);
                 }}/>

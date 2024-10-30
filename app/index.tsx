@@ -10,9 +10,11 @@ const App: FC = () => {
     const router = useRouter();
 
     useEffect(() => {
-        if (!loginDataLoading && userInfo.email) {
+        if (!loginDataLoading && userInfo.profileOk) {
+            router.push("/HomeScreen");
+        } else if (!loginDataLoading && userInfo.onBoardingDone) {
             router.push("/Profile");
-        } else if (!loginDataLoading && !userInfo.email) {
+        } else if (!loginDataLoading) {
             router.push("/OnBoarding");
         }
     }, [loginDataLoading, userInfo]);

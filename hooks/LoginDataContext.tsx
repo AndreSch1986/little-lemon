@@ -13,6 +13,8 @@ type UserInfo = {
     passwordChange:boolean,
     specialOffers:boolean,
     newsletters:boolean,
+    onBoardingDone:boolean,
+    profileOk:boolean,
 };
 
 export interface LoginDataContextType {
@@ -32,6 +34,8 @@ export const LoginDataContext = createContext<LoginDataContextType>({
         passwordChange:false,
         specialOffers:true,
         newsletters:true,
+        onBoardingDone:false,
+        profileOk:false,
     },
     setUserInfo: () => {},
     loginDataLoading: true
@@ -49,6 +53,8 @@ const LoginDataProvider: React.FC<{ children: React.ReactNode }> = ({children}) 
         passwordChange:false,
         specialOffers:true,
         newsletters:true,
+        onBoardingDone:false,
+        profileOk:false,
     });
     const [loginDataLoading, setLoginDatasetLoading] = useState<boolean>(true);
 
